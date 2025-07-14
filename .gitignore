@@ -1,0 +1,10 @@
+# macOS system files
+.DS_Store
+.history
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# Other common ignores
+*.log
