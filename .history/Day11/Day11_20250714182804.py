@@ -1,0 +1,48 @@
+with open('Day11.txt','r') as file:
+    seats = file.read().splitlines()
+
+def reader(seats):
+    occupied = '#'
+    occupied_seats = 0
+    row, column = len(seats), len(seats[0])
+    seats = [list(a) for a in seats]
+    new_seats = [a.copy() for a in seats]  
+
+    for i in range(row):
+        for j in range(column):
+
+            if seats[i][j] == 'L':
+                if all(
+                        0 > i + dr or i + dr >= row or
+                        0 > j + dc or j + dc >= column or
+                        seats[i + dr][j + dc] != '#'
+                        for dr in [-1, 0, 1]
+                        for dc in [-1, 0, 1]
+                        if not (dr == 0 and dc == 0)
+                ):
+                    new_seats[i][j] = '#'
+            
+            if seats[i][j] == '#':
+                count = 0 
+
+                for dc in [-1,0,1] :
+                    for dr in [-1,0,1]:
+                        
+                        if dr == 0 and dc == 0: continue
+
+
+                        nr, nc = i + dr, j + dc
+                        if 0 <= nr < row and 0 <= nc < column:
+                            if seats[nr][nc] == occupied:
+                                count+= 1
+
+                            if count >= 4:
+                                new_seats[i][j] = 'L'
+   
+   
+    occupied_seats = sum(row.count(occupied) for row in new_seats)
+
+    return new_seats, occupied_seats
+                        
+
+    
