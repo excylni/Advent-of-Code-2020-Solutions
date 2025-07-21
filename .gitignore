@@ -8,3 +8,6 @@ __pycache__/
 
 # Other common ignores
 *.log
+
+*.ipynb
+.ipynb_checkpoints/
